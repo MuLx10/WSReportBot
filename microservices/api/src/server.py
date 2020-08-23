@@ -14,8 +14,8 @@ from flask import Flask, render_template
 from src.utils.utils import sendSlackReport,sendSlackLangReport
 from src.utils.backend import get_weekly_report, get_language_report_week
 
-slackToken = "wk6GW3p1fzUbC7gNHbgxtsYa"
-# slackToken = os.environ['SLACK_TOKEN']
+
+slackToken = os.environ['SLACK_TOKEN']
 botAccessToken = "xoxb-374384770263-374217359473-SfFw7D91EQWKz5qaxfS1hJVZ"
 # botAccessToken = os.environ['BOT_ACCESS_TOKEN']
 hasuraDataUrl = "http://data.hasura/v1/query"
@@ -37,13 +37,13 @@ def done():
 def start():
     global p
     p = subprocess.Popen(["python","src/utils/clock.py"])
-    return "Hello Parul :P"
+    return None
 
 @app.route("/kill")
 def kill():
     global p
     p.kill()
-    return "Hello Parul :P"
+    return "Me"
 
 @app.route('/reportslack', methods=['POST'])
 def report():
@@ -114,7 +114,7 @@ def language_report():
 # @app.route("/login")
 # def chk_login():
 #     headers = login('mehul','mehul@hasura')
-#     return "Hello Parul :P"
+#     
 
 
 
